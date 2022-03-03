@@ -21,6 +21,11 @@ class Getdata{
     fetch(this.url)
     .then(response => response.json())
     .then((data =>{
+          city[0].innerHTML = data.name
+          ctemp.innerHTML = Math.round((data.main.temp - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          flike.innerHTML  = Math.round((data.main.feels_like - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          maxTemp.innerHTML = Math.round((data.main.temp_max - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          minTemp.innerHTML = Math.round((data.main.temp_min - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
       //loop to filter and convert data from celsius to fahrenheit and vice versa
       for(let i = 0; i< radioButtons.length; i++){
         radioButtons[i].addEventListener("change",()=>{
@@ -71,12 +76,32 @@ function getDataByCity(){
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=1cfa3771828a36e5c37d7ffcdfb6d554`)
   .then(response => response.json())
   .then(data => 
-    {console.log(data)
+    {
       city[0].innerHTML = data.name
-      ctemp.innerHTML = data.main.temp
-      flike.innerHTML = data.main.feels_like
-      maxTemp.innerHTML = data.main.temp_max
-      minTemp.innerHTML = data.main.temp_min
+          ctemp.innerHTML = Math.round((data.main.temp - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          flike.innerHTML  = Math.round((data.main.feels_like - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          maxTemp.innerHTML = Math.round((data.main.temp_max - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          minTemp.innerHTML = Math.round((data.main.temp_min - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+      for(let i = 0; i< radioButtons.length; i++){
+        radioButtons[i].addEventListener("change",()=>{
+          if(radioButtons[i].value == "option2"){
+            radioButtons[i].checked = true
+            city[0].innerHTML = data.name 
+            ctemp.innerHTML = Math.round((((data.main.temp - 273.15) * 9/5 + 32) + Number.EPSILON)* 100) / 100 + "°F"
+            flike.innerHTML = Math.round((((data.main.feels_like - 273.15) * 9/5 + 32) + Number.EPSILON)* 100) / 100 + "°F"
+            maxTemp.innerHTML = Math.round((((data.main.temp_max - 273.15) * 9/5 + 32) + Number.EPSILON)* 100) / 100 + "°F"
+            minTemp.innerHTML = Math.round((((data.main.temp_min - 273.15) * 9/5 + 32) + Number.EPSILON)* 100) / 100 + "°F"
+          }
+          else{
+          city[0].innerHTML = data.name
+          ctemp.innerHTML = Math.round((data.main.temp - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          flike.innerHTML  = Math.round((data.main.feels_like - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          maxTemp.innerHTML = Math.round((data.main.temp_max - 273.15 + Number.EPSILON) * 100) / 100 + "°C"
+          minTemp.innerHTML = Math.round((data.main.temp_min - 273.15 + Number.EPSILON) * 100) / 100 + "°C" 
+          }
+        })
+        
+      }
     })
     .catch(err => {
       city[0].innerHTML = "No such city name"
