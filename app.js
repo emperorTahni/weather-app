@@ -20,6 +20,25 @@ function getLocation() {
   
 }
 getLocation()
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+class Getdata{
+  constructor(city,ctemp,flike,maxTemp,minTemp){
+    this.city = city;
+    this.ctemp =ctemp;
+    this.flike = flike;
+    this.maxTemp = maxTemp;
+    this.minTemp = minTemp;
+
+  this.getLocation = (position) =>{
+    
+  }
+}
+}
+
+
 
 
 
@@ -78,27 +97,6 @@ function getDataF(data){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-jfhhfhfhhfhfhfhfhfhfhhf,hevbhjf
-
-
-
-
-
-
-
-
-
   //Callback Function to get the user position and make request to api based on specified location
   function getPosition(position){
     const longitude =position.coords.longitude 
@@ -142,7 +140,7 @@ jfhhfhfhhfhfhfhfhfhfhhf,hevbhjf
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //Add Event-Listner to the Search Button to get data by specififying city name and searching
 check.addEventListener("click",getDataByCity)
 
